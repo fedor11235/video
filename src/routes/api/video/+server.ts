@@ -1,13 +1,16 @@
 import { json, type RequestHandler } from '@sveltejs/kit'
+import type { ReadStream } from 'fs'
 import fs from 'fs'
 
 export const GET = (async ({ request }) => {
   const range = request.headers.get('range')
-  // console.log(request.params.get('test'))
+  const parsedUrl = new URL(request.url)
+  const videoName = parsedUrl.searchParams.get("name")
   if (!range) return json({ message: 'Require range headers' }, { status: 400 })
 
   const videoPath  = 'media/videos/'
-  const videoSize = fs.statSync(videoPath + '1.mp4').size
+  const videoFullPath = videoPath + videoName + '.mp4'
+  const videoSize = fs.statSync(videoFullPath).size
   
 
   const CHUNK_SIZE = 500 * 1024
@@ -18,7 +21,7 @@ export const GET = (async ({ request }) => {
   const headers = {
     'Content-Range': `bytes ${start}-${end}/${videoSize}`,
     'Accept-Ranges': 'bytes',
-    'Content-Length': contentLength,
+    'Content-Length': String(contentLength),
     'Content-Type': 'video/mp4'
   }
 
@@ -27,9 +30,12 @@ export const GET = (async ({ request }) => {
     headers
   };
 
-  const videoStream = fs.createReadStream(videoPath, { start, end })
+  const videoStream: ReadStream = fs.createReadStream(videoFullPath, { start, end })
+
+  // if (!videoStream) return json({ message: 'Require range headers' }, { status: 400 })
 
   const responce = new Response(videoStream, options)
 
   return responce
+  // return json({ message: 'LOLO' }, { status: 200 })
 }) satisfies RequestHandler

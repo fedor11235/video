@@ -15,14 +15,14 @@
 <section>
   <h1>My Blog</h1>
   <main>
-    <!-- <div>
+    <div>
       {#each data.feed as video (video.id)}
         <div>{video.title}</div>
         <div>{video.description}</div>
         <div>{video.file}</div>
         <div>{video.image}</div>
       {/each}
-    </div> -->
+    </div>
     <form method="post" class="posts">
       <h1>Create Video</h1>
       {#if form?.missing}<p class="error">Missing field required!</p>{/if}
@@ -53,7 +53,7 @@
       <button type="submit">Create</button>
     </form>
     <video  width="225" height="400" controls autoplay>
-      <source src="/api/video?test=6" type="video/mp4">
+      <source src="/api/video?name=1" type="video/mp4">
       <track src="./captions_en.vtt" kind="captions" srclang="en" label="english_captions">
     </video>
   </main>
