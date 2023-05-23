@@ -1,12 +1,22 @@
-import prisma from '$lib/prisma';
-import { fail, redirect } from '@sveltejs/kit';
-import type { PageServerLoad, Actions } from './$types';
+import prisma from '$lib/prisma'
+import { fail, redirect } from '@sveltejs/kit'
+import type { PageServerLoad, Actions } from './$types'
+import * as fs from 'fs'
+
+const videoPatch  = 'media/videos/'
+const imagesPatch = 'media/images/'
 
 export const load = (async () => {
 
   const response = await prisma.video.findMany()
 
-  return { feed: response };
+  let video
+  // video = fs.statSync(videoPatch + '1.mp4')
+
+
+  return { 
+    feed: response
+  };
 }) satisfies PageServerLoad
 
 export const actions = {
@@ -35,6 +45,6 @@ export const actions = {
       },
     });
 
-    throw redirect(303, `/`)
+    // throw redirect(303, `/video`)
   }
 } satisfies Actions
