@@ -28,6 +28,10 @@ export const actions = {
     let file = data.get("file")
     let image = data.get("image")
 
+    
+    console.log(file)
+    console.log(image)
+
     if (!title || !description || !file || !image) {
       return fail(400, { title, description, file, image, missing: true });
     }
