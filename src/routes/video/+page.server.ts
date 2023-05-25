@@ -39,11 +39,15 @@ export const actions = {
     let fileName = 1
 
     if(latestVideos) {
-      fileName = latestVideos.id ++
+      fileName = ++latestVideos.id
     }
+
+    console.log(fileName)
 
     const imagesPathFile = path.join(imagesPathDir, fileName + '.' + imageFormat)
     const videoPathFile  = path.join(videoPathDir,  fileName + '.' + videoFormat)
+
+    console.log(imagesPathFile, videoPathFile)
   
     ;(image as File).arrayBuffer().then((result: ArrayBuffer) => {
       const formArray = new Int8Array(result)

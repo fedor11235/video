@@ -1,17 +1,16 @@
 <script lang="ts">
   // import type { ActionData } from './$types'
-  import { enhance, applyAction, deserialize } from '$app/forms';
-  import { getFilteredPhoto, checkSizeCompatibleOne } from '$lib/helpers/fileCheck'
-
-  import { invalidateAll, goto } from '$app/navigation';
   
   export let form: any
 
-  let photoInput: HTMLInputElement
-  let videoInput: HTMLInputElement
+  let photoInput : HTMLInputElement
+  let videoInput : HTMLInputElement
 
-  let photoValue: File
-  let videoValue: File
+  let title      : string
+  let description: string
+
+  let photoValue : File
+  let videoValue : File
 
   function handlerClickButtonImage() {
     photoInput.click()
@@ -29,54 +28,42 @@
     videoValue = videoInput!.files![0]
   }
 
-  async function handleSubmit() {
-    const self: HTMLFormElement = this
-    const data = new FormData(self)
+  async function handlerSubmit() {
+    const data = new FormData()
 
-    console.log(photoValue)
-    console.log(videoValue)
-
-    console.log('photoValue', photoValue)
-
+    data.append('title', title)
+    data.append('description', description)
     data.append('image', photoValue)
     data.append('video', videoValue)
 
-    const response = await fetch(self.action, {
+    await fetch('/video', {
       method: 'POST',
       body: data
-    });
-    /** @type {import('@sveltejs/kit').ActionResult} */
-    const result = deserialize(await response.text());
-
-    if (result.type === 'success') {
-      await invalidateAll();
-    }
-    applyAction(result);
+    })
   }
 
 </script>
 
-  <input type="file" bind:this={photoInput}  value={form?.image ?? ''} on:change={handlerChangeInputPhoto} class="hide" accept="image/*">
-  <input type="file" bind:this={videoInput}  value={form?.file  ?? ''} on:change={handlerChangeInputVideo} class="hide" accept="video/*">
+  <input type="file" bind:this={photoInput} on:change={handlerChangeInputPhoto} class="hide" accept="image/*">
+  <input type="file" bind:this={videoInput} on:change={handlerChangeInputVideo} class="hide" accept="video/*">
 
-  <form method="post" class="posts"  on:submit|preventDefault={handleSubmit}  use:enhance>
-    {#if form?.missing}<p class="error">Missing field required!</p>{/if}
+  <div class="posts">
     <input
       name="title"
       placeholder="Title"
       type="text"
-      value={form?.title ?? ""}
+      bind:value={title}
     />
     <input
       name="description"
       placeholder="Description"
       type="text"
-      value={form?.description ?? ""}
+      bind:value={description}
     />
-    <button class="button" on:click|preventDefault={handlerClickButtonImage}>Загрузить превьюшку</button>
-    <button class="button" on:click|preventDefault={handlerClickButtonVideo}>Загрузить видео</button>
-    <button class="button" type="submit">Create</button>
-  </form>
+    <button class="button" on:click={handlerClickButtonImage}>Загрузить превьюшку</button>
+    <button class="button" on:click={handlerClickButtonVideo}>Загрузить видео</button>
+    <button class="button" on:click={handlerSubmit}>Create</button>
+  </div>
 
 <style>
   .hide {
