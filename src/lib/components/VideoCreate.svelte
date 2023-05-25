@@ -1,7 +1,6 @@
 <script lang="ts">
-  // import type { ActionData } from './$types'
-  
-  export let form: any
+  import { deserialize } from '$app/forms';
+  import { invalidateAll } from '$app/navigation';
 
   let photoInput : HTMLInputElement
   let videoInput : HTMLInputElement
@@ -9,8 +8,8 @@
   let title      : string
   let description: string
 
-  let photoValue : File
-  let videoValue : File
+  let photoValue : File | null
+  let videoValue : File | null
 
   function handlerClickButtonImage() {
     photoInput.click()
@@ -31,15 +30,46 @@
   async function handlerSubmit() {
     const data = new FormData()
 
+    if(!photoValue) {
+      alert('вы не выбрали превью для вашего видео')
+      return
+    }
+
+    if(!videoValue) {
+      alert('вы не выбрали видео')
+      return
+    }
+
+    if(!title) {
+      alert('вы не выбрали название видео')
+      return
+    }
+
+    if(!description) {
+      alert('вы не выбрали описание к видео')
+      return
+    }
+
     data.append('title', title)
     data.append('description', description)
     data.append('image', photoValue)
     data.append('video', videoValue)
 
-    await fetch('/video', {
+    const response = await fetch('/video', {
       method: 'POST',
       body: data
     })
+
+    /** @type {import('@sveltejs/kit').ActionResult} */
+    const result = deserialize(await response.text());
+
+    if (result.type === 'success') {
+      await invalidateAll();
+      title       = ''
+      description = ''
+      photoValue  = null
+      videoValue  = null
+    }
   }
 
 </script>

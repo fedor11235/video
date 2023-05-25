@@ -6,20 +6,21 @@
 
   export let form: ActionData
   export let data: PageData
-
 </script>
 
 <svelte:head>
-	<title>Videos</title>
+	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <section>
-  <h1>My Video</h1>
-  {#each data.feed as video (video.id)}
-    <VideoView videoName={String(video.id)} />
-  {/each}
-  <VideoCreate form = {form} />
+  <h1>My Blog</h1>
+  <div>
+    {#each data.feed as video (video.id)}
+      <VideoView videoName={String(video.id)} />
+    {/each}
+  </div>
+  <VideoCreate />
 </section>
 
 <style>
