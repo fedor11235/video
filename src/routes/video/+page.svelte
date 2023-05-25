@@ -2,9 +2,8 @@
   import '@mux/mux-video'
 	import VideoView from '$lib/components/VideoView.svelte'
   import VideoCreate from '$lib/components/VideoCreate.svelte'
-  import type { PageData, ActionData } from './$types'
+  import type { PageData } from './$types'
 
-  export let form: ActionData
   export let data: PageData
 </script>
 
@@ -14,7 +13,6 @@
 </svelte:head>
 
 <section>
-  <h1>My Blog</h1>
   <div>
     {#each data.feed as video (video.id)}
       <VideoView videoName={String(video.id)} />
