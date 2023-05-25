@@ -34,7 +34,7 @@ export const GET = (async ({ request }) => {
 
   // if (!videoStream) return json({ message: 'Require range headers' }, { status: 400 })
 
-  const responce = new Response(videoStream, options)
+  const responce = new Response((videoStream as any), options)
 
   return responce
   // return json({ message: 'LOLO' }, { status: 200 })
