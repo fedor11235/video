@@ -32,7 +32,19 @@ export const config = {
 ПОСМОТРЕТЬ СОДЕРЖАНИЕ БД
 npx prisma studio
 
+СОЗДАТЬ ПРОЕКТ PRISMA
+npx prisma init
+
+СГЕНЕРИРОВАТЬ ДБ НА ОСНОВЕ МОДЕЛИ
+npx prisma generate
+
+СОЗДАНИЕ БД И ТАБЛИЦ
+npx prisma db push
+
 ВОЗМОЖНО УДАЛИТЬ
 @mux/mux-video
 @types/node
+
+// удаление файла
+// fs.unlinkSync("hello.txt")
 

@@ -14,3 +14,4 @@ vite.config.ts.timestamp-*
 *exemple*
 media/videos/*
 media/images/*
+*dev.db*

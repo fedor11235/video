@@ -6,6 +6,7 @@
 
   export let form: ActionData
   export let data: PageData
+
 </script>
 
 <svelte:head>
