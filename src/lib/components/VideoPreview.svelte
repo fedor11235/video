@@ -1,18 +1,19 @@
 <script lang="ts">
   export let video: any
+  const PATH_IMAGES = 'src/media/images/'
+  const URL_VIEW    = 'video/'
 </script>
-
-<div class="previw">
-  <img class="video" src={video.image} alt="previw" width="360" height="200"/>
+<a href={URL_VIEW + video.id} class="previw">
+  <img class="video" src={PATH_IMAGES + video.image} alt="previw" width="360" height="200"/>
   <div class="info">
-    <img class="avatar" src={video.image} alt="avatar" width="36" height="36">
+    <img class="avatar" src={PATH_IMAGES + video.image} alt="avatar" width="36" height="36">
     <div class="details">
       <h3 class="title">{video.title}</h3>
       <div class="nick">Fefe</div>
       <div class="statistics">1,7 млн просмотров 5 дней назад</div>
     </div>
   </div>
-</div>
+</a>
 
 <style>
   .previw {
@@ -20,7 +21,8 @@
     flex-direction: column;
     gap: 12px;
     border-radius: 12px;
-    cursor:pointer;
+    cursor: pointer;
+    text-decoration: none;
   }
   .video {
     border-radius: 12px;
@@ -50,6 +52,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 8px;
+    color: black;
   }
   .nick {
     font-size: 14px;
