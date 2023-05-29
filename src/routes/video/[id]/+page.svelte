@@ -14,6 +14,9 @@
   <VideoView
     videoName={data.id}
     videoTitle={data.title}
+    videoDescription={data.description}
+    videoDate={data.date}
+    videoComments={data.comments}
   />
 </section>
 
