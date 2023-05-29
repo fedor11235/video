@@ -32,10 +32,7 @@ export const GET = (async ({ request }) => {
 
   const videoStream: ReadStream = fs.createReadStream(videoFullPath, { start, end })
 
-  // if (!videoStream) return json({ message: 'Require range headers' }, { status: 400 })
-
   const responce = new Response((videoStream as any), options)
 
   return responce
-  // return json({ message: 'LOLO' }, { status: 200 })
 }) satisfies RequestHandler
