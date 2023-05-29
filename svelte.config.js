@@ -17,6 +17,7 @@ const config = {
       // this will match a file
       '$images': 'src/media/images/',
       '$videos': 'src/media/videos/',
+      '$src': 'src',
   }
 	}
 };

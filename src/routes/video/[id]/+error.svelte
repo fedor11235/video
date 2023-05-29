@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Video</title>
+	<title>Error</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
