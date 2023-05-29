@@ -1,12 +1,11 @@
 <script lang="ts">
-  import image from "$images/1.jpeg"
   export let video: any
 </script>
 
 <div class="previw">
-  <img class="video" src={image} alt="previw" width="360" height="200"/>
+  <img class="video" src={video.image} alt="previw" width="360" height="200"/>
   <div class="info">
-    <img class="avatar" src={image} alt="avatar" width="36" height="36">
+    <img class="avatar" src={video.image} alt="avatar" width="36" height="36">
     <div class="details">
       <h3 class="title">{video.title}</h3>
       <div class="nick">Fefe</div>
