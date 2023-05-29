@@ -2,6 +2,8 @@ import { error } from '@sveltejs/kit'
 import prisma from '$lib/prisma'
 import type { Load } from "@sveltejs/kit"
 
+export const ssr = false;
+
 const fackeComments = [
   {},
   {},

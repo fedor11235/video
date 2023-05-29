@@ -11,7 +11,10 @@
 </svelte:head>
 
 <section>
-  <VideoView videoName={data.id} />
+  <VideoView
+    videoName={data.id}
+    videoTitle={data.title}
+  />
 </section>
 
 <style>
