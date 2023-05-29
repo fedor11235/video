@@ -4,8 +4,8 @@ import type { PageServerLoad, Actions } from './$types'
 import * as fs from 'fs'
 import path from 'path'
 
-const imagesPathDir = 'media/images/'
-const videoPathDir  = 'media/videos/'
+const imagesPathDir = 'src/media/images/'
+const videoPathDir  = 'src/media/videos/'
 
 export const load = (async () => {
 

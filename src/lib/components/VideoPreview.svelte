@@ -1,17 +1,9 @@
 <script lang="ts">
-  import image from "./1.jpeg"
-  // import image from "media/images/1.jpeg"
+  import image from "$images/1.jpeg"
   export let video: any
 </script>
 
 <div class="previw">
-  <!-- {#await import(`../../../${video.image}`)}
-	<p>...waiting</p>
-  {:then image}
-    <p>T!!!!!!!!!!!!!!</p>
-  {:catch error}
-    <p style="color: red">{error.message}</p>
-  {/await} -->
   <img class="video" src={image} alt="previw" width="360" height="200"/>
   <div class="info">
     <img class="avatar" src={image} alt="avatar" width="36" height="36">

@@ -12,7 +12,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .remarks
 *exemple*
-media/videos/*
-media/images/*
+src/media/videos/*
+src/media/images/*
 *dev.db*
 TODO

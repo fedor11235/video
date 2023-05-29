@@ -8,7 +8,7 @@ export const GET = (async ({ request }) => {
   const videoName = parsedUrl.searchParams.get("name")
   if (!range) return json({ message: 'Require range headers' }, { status: 400 })
 
-  const videoPath  = 'media/videos/'
+  const videoPath  = 'src/media/videos/'
   const videoFullPath = videoPath + videoName + '.mp4'
   const videoSize = fs.statSync(videoFullPath).size
   
